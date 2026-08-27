@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+
+# Frame dumps produced by scripts/probe_camera.py --save
+captures/
+*.npz

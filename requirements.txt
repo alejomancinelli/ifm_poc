@@ -1,0 +1,20 @@
+# ifm O3D303 PoC - Python dependencies (Windows, Python 3.10)
+#
+# Install with:
+#   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
+# ifm's official pure-Python driver for the O3D3xx family (XMLRPC config + PCIC
+# data streaming). Not published on PyPI, so it is installed straight from the
+# GitHub repo. Pinned to the last upstream commit (2019-12-04) - the repo has
+# been dormant since, because the O3D3xx protocol is frozen.
+o3d3xx @ git+https://github.com/ifm/o3d3xx-python.git@e57e955a2403ed336fa54d92e68c2a980384e55a
+
+# Frame decoding: PCIC blobs arrive as flat array.array buffers that we reshape
+# into 2D images.
+numpy~=2.2
+
+# Live visualisation of amplitude / distance / height images.
+matplotlib~=3.10
+
+# Runs the vendored upstream unittest suite in tests/manual/.
+pytest~=8.3

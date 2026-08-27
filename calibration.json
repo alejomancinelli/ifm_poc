@@ -1,0 +1,27 @@
+{
+  "offset_mm": 16.467092603645536,
+  "slope": 0.9814965294624504,
+  "min_height_mm": 0.0,
+  "points": [
+    {
+      "true_height_mm": 10.0,
+      "measured_height_mm": -6.9500000000000455
+    },
+    {
+      "true_height_mm": 20.0,
+      "measured_height_mm": 4.850000000000023
+    },
+    {
+      "true_height_mm": 35.0,
+      "measured_height_mm": 18.0
+    },
+    {
+      "true_height_mm": 50.0,
+      "measured_height_mm": 33.799999999999955
+    },
+    {
+      "true_height_mm": 70.0,
+      "measured_height_mm": 54.89999999999998
+    }
+  ]
+}

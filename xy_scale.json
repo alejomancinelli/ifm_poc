@@ -1,0 +1,81 @@
+{
+  "true_length_mm": 70.0,
+  "sample_count": 5,
+  "mean_scale": 0.9267672794213766,
+  "area_scale": 0.8588975902060999,
+  "scale_spread": 0.012002882379802208,
+  "radial_correlation": -0.6893049903338936,
+  "is_uniform": false,
+  "samples": [
+    {
+      "measured_length_mm": 74.10296890138748,
+      "planar_length_mm": 72.00694410957877,
+      "error_pct": 5.861384144839263,
+      "angle_deg": 127.66562119858331,
+      "pixel_a": [
+        133,
+        224
+      ],
+      "pixel_b": [
+        158,
+        206
+      ]
+    },
+    {
+      "measured_length_mm": 74.91328320131217,
+      "planar_length_mm": 74.88658090739622,
+      "error_pct": 7.018976001874527,
+      "angle_deg": 124.11447294534125,
+      "pixel_a": [
+        125,
+        156
+      ],
+      "pixel_b": [
+        99,
+        174
+      ]
+    },
+    {
+      "measured_length_mm": 76.6355009117837,
+      "planar_length_mm": 76.40026177965623,
+      "error_pct": 9.47928701683385,
+      "angle_deg": 52.980113745168524,
+      "pixel_a": [
+        135,
+        268
+      ],
+      "pixel_b": [
+        160,
+        286
+      ]
+    },
+    {
+      "measured_length_mm": 76.58981655546643,
+      "planar_length_mm": 76.05918747922567,
+      "error_pct": 9.414023650666325,
+      "angle_deg": 177.73949808885874,
+      "pixel_a": [
+        43,
+        200
+      ],
+      "pixel_b": [
+        42,
+        231
+      ]
+    },
+    {
+      "measured_length_mm": 75.47847375245475,
+      "planar_length_mm": 75.47184905645283,
+      "error_pct": 7.826391074935353,
+      "angle_deg": 32.005383208083494,
+      "pixel_a": [
+        54,
+        268
+      ],
+      "pixel_b": [
+        71,
+        293
+      ]
+    }
+  ]
+}
