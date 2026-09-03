@@ -264,9 +264,11 @@ README.md before "fixing" a non-zero empty reading.
 the **camera's dtype** — one `.npz` per frame, one array per blob. A recorded Z
 converted to float costs twice the disk, and one read back as uint16 hits the
 same ~65000 mm trap `frames.py` works around; keeping the dtype avoids both.
-`confidence_image` is in the default set of `scripts/record_frames.py` for the
-same reason `get_valid_mask` exists: a Z without its validity mask cannot be
-blanked afterwards, and it is the cheapest of the three blobs. The file name
+`x_image`/`y_image` are in the default set of `scripts/record_frames.py` too, so
+a recording carries real mm scale without asking for it explicitly — see
+`analysis/pixel_scale.py`. `confidence_image` is there for the same reason
+`get_valid_mask` exists: a Z without its validity mask cannot be blanked
+afterwards, and it is the cheapest of the five blobs. The file name
 carries the index and the local time to the millisecond so a frame that leaves
 its folder still says when it was taken; the stamp is the host clock at arrival —
 the O3D3xx sends no timestamp in these blobs — so `elapsed_s` in `index.csv` is
@@ -274,8 +276,8 @@ the base to measure from, and one wall-clock read anchors the run so the name an
 the column cannot disagree. Milliseconds are split with `round(epoch_s * 1000)`
 rather than `% 1.0`: at epoch magnitude a float64 steps in ~240 ns and truncating
 loses a millisecond. `index.csv` also carries `illu_temp_c`, which is the thermal
-drift of the error budget. Uncompressed size is exact arithmetic (453.8 KB per frame at 352×264 for
-the default set); the compression ratio is scene-dependent, so the script
+drift of the error budget. Uncompressed size is exact arithmetic (816.8 KB per frame at 352×264 for
+the default set, same five blobs as `belt_flow.py`'s); the compression ratio is scene-dependent, so the script
 measures it instead of assuming one, and it warns when compressing eats more than
 half the frame period, since it runs in the capture loop. Compression is DEFLATE
 and lossless, so the only thing `--no-compress` buys is that headroom — what a

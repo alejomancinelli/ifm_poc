@@ -22,9 +22,10 @@ cada blob, caudal por hora y cuánto aguanta el volumen a ese ritmo. También si
 se cortó a mano, así que 20 frames de prueba ya alcanzan para dimensionar una
 grabación larga.
 
-Por defecto se guarda también `confidence_image`: es el blob más chico de los
-tres y sin él los píxeles inválidos del Z no se pueden limpiar después. Para
-mirar los frames como imagen está `scripts/probe_camera.py --save`.
+Por defecto se guardan también `x_image`/`y_image` -para tener escala real en mm
+más adelante, como en `analysis/belt_speed.py`- y `confidence_image`, el blob más
+chico del grupo y sin el cual los píxeles inválidos del Z no se pueden limpiar
+después. Para mirar los frames como imagen está `scripts/probe_camera.py --save`.
 
 Solo lee de la cámara: es seguro correrlo contra un equipo en producción.
 """
@@ -63,7 +64,7 @@ BLOB_BY_ALIAS = {
     "confidence": "confidence_image",
 }
 
-DEFAULT_ALIASES = ("amplitude", "z", "confidence")
+DEFAULT_ALIASES = ("amplitude", "z", "confidence", "x", "y")
 
 # Se pide siempre: son 24 bytes y traen la temperatura del iluminador, que es la
 # que explica la deriva térmica al revisar una grabación larga.

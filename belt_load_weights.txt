@@ -1,0 +1,10 @@
+captures/20260828_140709; 4750T
+captures/20260828_141026; 4885T
+captures/20260828_142408; 4440T
+captures/20260828_142730; 5005T
+captures/20260828_143150; 6115T
+captures/20260828_143757; 11875T
+capturas/1/*/flow; 5650T
+capturas/2/*/flow; 8760T
+capturas/3/*/flow; 4700T
+capturas/4/*/flow; 8300T

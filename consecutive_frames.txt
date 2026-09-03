@@ -1,0 +1,4 @@
+capturas/1/*/flow: 505-506-507
+capturas/2/*/flow: 665-666
+capturas/3/*/flow: 488-489-490
+capturas/4/*/flow: 637-638

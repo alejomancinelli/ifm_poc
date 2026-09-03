@@ -18,3 +18,7 @@ matplotlib~=3.10
 
 # Runs the vendored upstream unittest suite in tests/manual/.
 pytest~=8.3
+
+# Writes the amplitude/distance videos in analysis/frames_to_video.py. Bundles
+# its own ffmpeg binary, so no system ffmpeg install is needed.
+imageio[ffmpeg]~=2.37

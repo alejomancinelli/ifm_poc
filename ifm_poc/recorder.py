@@ -48,6 +48,8 @@ _BYTE_UNITS = (("TB", 1 << 40), ("GB", 1 << 30), ("MB", 1 << 20), ("KB", 1 << 10
 _SECONDS_PER_HOUR = 3600.0
 _SECONDS_PER_DAY = 86400.0
 
+DEFAULT_FPS = 5.0  # cadencia nominal de la O3D303, para corridas de un solo frame
+
 
 def _split_stamp(epoch_s: float) -> tuple[int, int]:
     """
@@ -290,6 +292,51 @@ class RecordingSession:
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()
         return False
+
+
+@dataclass(frozen=True)
+class RecordedFrame:
+    """Una fila de `index.csv`: dónde quedó el `.npz` y cuándo se grabó."""
+
+    index: int
+    path: pathlib.Path
+    elapsed_s: float
+
+
+def read_recording(record_dir: pathlib.Path) -> list[RecordedFrame]:
+    """
+    Lee `index.csv` y devuelve los frames de la corrida en orden de captura.
+
+    `elapsed_s` es el reloj monótono con el que se grabó, así que de ahí sale el
+    fps real de la corrida — no hace falta que haya sido constante.
+    """
+    with (record_dir / INDEX_NAME).open(newline="", encoding="utf-8") as index_file:
+        rows = list(csv.DictReader(index_file))
+    return [
+        RecordedFrame(int(row["index"]), record_dir / row["file"], float(row["elapsed_s"]))
+        for row in rows
+    ]
+
+
+def estimate_fps(frames: list[RecordedFrame]) -> float:
+    """Fps real de la corrida, de la cadencia entre el primer y el último frame."""
+    if len(frames) < 2:
+        return DEFAULT_FPS
+    span_s = frames[-1].elapsed_s - frames[0].elapsed_s
+    if span_s <= 0:
+        return DEFAULT_FPS
+    return (len(frames) - 1) / span_s
+
+
+def read_manifest(record_dir: pathlib.Path) -> dict:
+    """Lee `session.json`: blobs, dtype y forma con los que se grabó la corrida."""
+    return json.loads((record_dir / MANIFEST_NAME).read_text(encoding="utf-8"))
+
+
+def load_frame(path: pathlib.Path) -> dict:
+    """Reabre un `.npz` grabado como el dict de arrays que usa el resto del repo."""
+    with np.load(path) as archive:
+        return {name: archive[name] for name in archive.files}
 
 
 def describe_session(session: RecordingSession) -> str:

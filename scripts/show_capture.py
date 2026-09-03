@@ -24,10 +24,10 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 import matplotlib.pyplot as plt  # noqa: E402
-import numpy as np  # noqa: E402
 
 from ifm_poc import blank_invalid, describe_frame, get_valid_mask  # noqa: E402
 from ifm_poc.display import DEFAULT_CLIP_PCT, compute_display_range  # noqa: E402
+from ifm_poc.recorder import load_frame  # noqa: E402
 
 # Orden de los paneles; los blobs que no estén en la grabación se saltean.
 PANEL_BLOBS = (
@@ -62,12 +62,6 @@ def resolve_path(target: pathlib.Path, index: int) -> pathlib.Path:
     if index >= len(frames):
         raise SystemExit(f"{target} tiene {len(frames)} frames; no hay índice {index}")
     return frames[index]
-
-
-def load_frame(path: pathlib.Path) -> dict:
-    """Devuelve el frame como el dict de arrays que usa el resto del repo."""
-    with np.load(path) as archive:
-        return {name: archive[name] for name in archive.files}
 
 
 def show_frame(frame: dict, path: pathlib.Path, clip_pct: float):
