@@ -1,0 +1,8 @@
+captures/20260828_142408      media 310.61 ms  desvío 26.88 ms  (3.22 fps)
+captures/20260828_142730      media 309.11 ms  desvío 28.18 ms  (3.24 fps)
+captures/20260828_143150      media 100.00 ms  desvío 20.61 ms  (10.00 fps)
+captures/20260828_143757      media 100.00 ms  desvío 30.34 ms  (10.00 fps)
+capturas/1/20260828_144528    media 207.33 ms  desvío 45.08 ms  (4.82 fps)
+capturas/2/20260828_144959    media 172.59 ms  desvío 29.68 ms  (5.79 fps)
+capturas/3/20260828_145415    media 206.19 ms  desvío 32.38 ms  (4.85 fps)
+capturas/4/20260828_145754    media 163.67 ms  desvío 31.20 ms  (6.11 fps)

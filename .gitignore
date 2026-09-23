@@ -24,8 +24,14 @@ analysis/cross_section/
 # Output of analysis/raw_profile.py: raw distance-to-camera video, no reference
 analysis/raw_profile/
 
+# Output of analysis/summary_video.py: combined amplitude/volume/profile/graphs video
+analysis/summary_video/
+
 # Output of analysis/
 analysis/calibration_clip_negative
 
 # Output of analysis/
 analysis/calibration_test_offset
+
+analysis/summary_video_compare
+analysis/summary_video_test
