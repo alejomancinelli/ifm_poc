@@ -27,6 +27,9 @@ analysis/raw_profile/
 # Output of analysis/summary_video.py: combined amplitude/volume/profile/graphs video
 analysis/summary_video/
 
+# Output of analysis/bars3d_video.py: 3D bar-chart video of grain height
+analysis/bars3d_video/
+
 # Output of analysis/
 analysis/calibration_clip_negative
 

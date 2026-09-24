@@ -78,6 +78,27 @@ class TestPixelArea(TestCase):
         self.assertTrue(np.allclose(area, _PIXEL_AREA_MM2))
 
 
+class TestPixelAreaUnderPooling(TestCase):
+    def test_pooled_grid_area_matches_full_resolution(self):
+        # Grilla rotada, no alineada a los ejes, para que el chequeo no se
+        # reduzca al caso trivial. `analysis/bars3d_video.py` agrupa píxeles en
+        # bloques y vuelve a llamar a `compute_pixel_area_mm2` sobre esa grilla
+        # reducida; esto valida que el área total no cambia al hacerlo.
+        rows, cols = np.mgrid[0:120, 0:150]
+        angle = np.radians(15.0)
+        x_fine = 5.0 * (cols * np.cos(angle) - rows * np.sin(angle))
+        y_fine = 5.0 * (cols * np.sin(angle) + rows * np.cos(angle))
+        full_area_total = compute_pixel_area_mm2(x_fine, y_fine).sum()
+
+        block = 10
+        pooled_rows, pooled_cols = rows.shape[0] // block, rows.shape[1] // block
+        x_pooled = x_fine.reshape(pooled_rows, block, pooled_cols, block).mean(axis=(1, 3))
+        y_pooled = y_fine.reshape(pooled_rows, block, pooled_cols, block).mean(axis=(1, 3))
+        pooled_area_total = compute_pixel_area_mm2(x_pooled, y_pooled).sum()
+
+        self.assertAlmostEqual(pooled_area_total, full_area_total, delta=full_area_total * 0.02)
+
+
 class TestMeasureVolume(TestCase):
     def setUp(self):
         self.reference = build_reference([_build_empty_frame() for _ in range(5)])
